@@ -1,10 +1,12 @@
-DEVKITARM = /opt/devkitpro/devkitarm
+# Here put where you have installed devkitpro
+DEVKITPRO = /opt/devkitpro
+DEVKITARM = $(DEVKITPRO)/devkitarm
 
 TOOLS = $(DEVKITARM)/bin
-DC=ldc2
+DC=ldc2 # The compiler arguments only work with ldc2
 CC = $(TOOLS)/arm-none-eabi-gcc
 OBJCOPY = $(TOOLS)/arm-none-eabi-objcopy
-GBAFIX = /opt/devkitpro/tools/bin/gbafix
+GBAFIX = $(DEVKITPRO)/tools/bin/gbafix
 
 TARGET = $(BIN)/main
 
