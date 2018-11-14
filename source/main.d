@@ -1,9 +1,9 @@
 extern (C) void doit();
 
-extern (C) int main() {
-	ubyte* IORAM = cast(ubyte*)0x04000000;	
-	ushort* VRAM = cast(ushort*)0x06000000;
+enum IORAM = cast(ubyte*)0x04000000;	
+enum VRAM = cast(ushort*)0x06000000;
 
+extern (C) int main() {	
 	IORAM[0] = 0x03;
 	IORAM[1] = 0x04;
 
