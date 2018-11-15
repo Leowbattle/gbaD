@@ -22,12 +22,12 @@ C_SOURCES := $(wildcard $(SRC)/*.c)
 C_OBJECTS := $(patsubst $(SRC)/%.c, $(OBJ)/%.o, $(C_SOURCES))
 
 all: $(D_OBJECTS) $(C_OBJECTS)
-	$(CC) $(D_OBJECTS) $(C_OBJECTS) -mthumb-interwork -mthumb -specs=gba.specs -o $(TARGET).elf
+	$(CC) $(D_OBJECTS) $(C_OBJECTS) -O3 -flto -mthumb-interwork -mthumb -specs=gba.specs -o $(TARGET).elf
 	$(OBJCOPY) -v -O binary $(TARGET).elf $(TARGET).gba
 	$(GBAFIX) $(TARGET).gba
 
 $(OBJ)/%.o: $(SRC)/%.d
-	$(DC) -betterC -mtriple=arm-none-eabi -c -arm-interworking -od=obj $<
+	$(DC) -betterC -O5 -mtriple=arm-none-eabi -c -arm-interworking -od=obj $<
 
 $(OBJ)/%.o: $(SRC)/%.c
-	$(CC) -I $(INCLUDE) -c $< -mthumb-interwork -mthumb -O2 -o $@
+	$(CC) -I $(INCLUDE) -O3 -c $< -mthumb-interwork -mthumb -O2 -o $@
